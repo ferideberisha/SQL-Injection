@@ -14,7 +14,14 @@ Hapat e mëposhtëm kryhen:
  - Përcaktojmë funksionin is_vulnerable, i cili merr një përgjigje dhe nëse faqja është potencialisht e cenueshme ndaj injektimit SQL bazuar në përmbajtjen e përgjigjes.
  - Përcaktojmë funksionin scan_sql_injection, i cili merr një URL dhe kryen një sërë testesh për të kontrolluar për dobësitë e injektimit SQL. Këto teste përfshijnë testimin e vetë URL-së dhe testimin e të gjitha formave të gjetura në faqe.
  - Krijojmë butonin e dërgimit dhe përcaktojmë sjelljen e tij kur klikojmë. Butoni dërgo merr URL-në nga fusha e hyrjes, ekzekuton funksionin scan_sql_injection dhe shfaq rezultatin në fushën e përgjigjes.
- - Drejtojmë ciklin kryesor për dritaren tkinter.
+ - Ekzekutojmë ciklin kryesor për dritaren tkinter.
+ 
+ Ekzekutimi i aplikacionit dhe përgjigja e tij në raste të ndyshme: 
  
  ![Foto1](https://user-images.githubusercontent.com/93921511/211205686-7e1c4c43-7869-47a1-9353-97bbcaa641f9.png)
 
+![Foto2](https://user-images.githubusercontent.com/93921511/211205743-12d02947-112e-4989-af8d-887e8a2ceb43.png)
+
+![Foto3](https://user-images.githubusercontent.com/93921511/211205750-a4cf670f-6245-4ac2-99f8-e79bd64dcddb.png)
+
+Linqet e testuara: http://128.198.49.198:8102/mutillidae/index.php?page=user-info.php, http://testphp.vulnweb.com/artists.php?artist=1, https://www.facebook.com/
