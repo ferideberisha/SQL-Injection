@@ -93,3 +93,54 @@ def scan_sql_injection(url):
     # test në format HTML
     forms = get_all_forms(url)
     response_field.insert(tk.END, f"\n[+] Detected {len(forms)} forms on {url}.")
+    for form in forms:
+        form_details = get_form_details(form)
+        for c in "\"'":
+            # rivendosim të dhënat
+            data = {}
+            # trupi i të dhënave që duam të dorëzojmë
+            for input_tag in form_details["inputs"]:
+                if input_tag["type"] == "hidden" or input_tag["value"]:
+                    # çdo formë hyrëse që është e fshehur ose ka ndonjë vlerë,
+                    # thjesht përdorim atë në trupin e formës
+                    try:
+                        data[input_tag["name"]] = input_tag["value"] + c
+                    except:
+                        pass
+                elif input_tag["type"] != "submit":
+                    # të gjithë të tjerët përveç 'submit', përdorin disa të dhëna të padëshiruara me karakter të veçantë
+                    data[input_tag["name"]] = f"test{c}"
+            # bashko URL-në me veprimin (formo URL-në e kërkesës)
+            url = urljoin(url, form_details["action"])
+            if form_details["method"] == "post":
+                res = s.post(url, data=data)
+            elif form_details["method"] == "get":
+                res = s.get(url, params=data)
+                if not is_vulnerable(res):
+                    response_field.insert(tk.END, f"\nSQL Injection vulnerability detected, link: {url}")
+                    response_field.insert (tk.END, "\n[+] Form:")
+                    response_field.insert(tk.END, json.dumps(form_details, indent=4))
+            break
+        else:
+            response_field.insert(tk.END, "\nSQL Injection vulnerability not detected")
+
+# krijojmë butonin 'submit'
+def submit():
+    url = url_input.get()
+    scan_sql_injection(url)
+
+submit_button = tk.Button(master=window, text="Submit", command=submit)
+submit_button.pack()
+submit_button.place(x=170, y=640, width=185)
+
+#krijojmë butonin 'clear'
+def clearclicked():
+    url_input.delete(0,END)
+    response_field.delete('1.0', END)
+
+button1 = tk.Button(master=window, text='Clear',command=clearclicked)
+button1.pack()
+button1.place(x=415, y=640, width=185)
+
+# ekzekutojmë ciklin kryesor
+window.mainloop()
