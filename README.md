@@ -15,3 +15,6 @@ Hapat e mëposhtëm kryhen:
  - Përcaktojmë funksionin scan_sql_injection, i cili merr një URL dhe kryen një sërë testesh për të kontrolluar për dobësitë e injektimit SQL. Këto teste përfshijnë testimin e vetë URL-së dhe testimin e të gjitha formave të gjetura në faqe.
  - Krijojmë butonin e dërgimit dhe përcaktojmë sjelljen e tij kur klikojmë. Butoni dërgo merr URL-në nga fusha e hyrjes, ekzekuton funksionin scan_sql_injection dhe shfaq rezultatin në fushën e përgjigjes.
  - Drejtojmë ciklin kryesor për dritaren tkinter.
+ 
+ ![Foto1](https://user-images.githubusercontent.com/93921511/211205686-7e1c4c43-7869-47a1-9353-97bbcaa641f9.png)
+
